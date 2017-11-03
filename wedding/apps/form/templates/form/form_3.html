@@ -1,0 +1,10 @@
+{% include "form/greeting.html" %}
+<form action="guest_form_three" method="post">
+    {% csrf_token %}
+    <p>Are you coming to the wedding?</p>
+    <select name='attending_one'>
+        <option value="yes">Yes</option>
+        <option value="no">No</option>
+    </select>
+    <input type='submit' />
+</form>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>All Guests</title>
+        <style>
+        table tbody tr:nth-child(odd) {
+            background-color: #e6e7e8;
+        }
+        </style>
+    </head>
+    <body>
+        <div>
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Attending</th>
+                    <th>Staying</th>
+                </tr>
+                {% for guest in guests %}
+                    <tr>
+                        <td>{{guest.id}}</td>
+                        <td>{{guest.first_name}}</td>
+                        <td>{{guest.last_name}}</td>
+                        <td>{{guest.attending}}</td>
+                        <td>{{guest.staying}}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+            <p>Total Guests = {{total}}</p>
+            <p>Staying at House = {{stay}}</p>
+        </div>
+        <div>
+            <table>
+                <tr>
+                    <th>Guest 1</th>
+                    <th>Guest 2</th>
+                    <th>Passcode</th>
+                    <th>Opened</th>
+                    <th>Completed</th>
+                    <th>Form</th>
+                </tr>
+                {% for invite in invites %}
+                    <tr>
+                        <td>{{invite.guest_1.first_name}} {{invite.guest_1.last_name}}</td>
+                        <td>{{invite.guest_2.first_name}} {{invite.guest_2.last_name}}</td>
+                        <td>{{invite.passcode}}</td>
+                        <td>{{invite.opened}}</td>
+                        <td>{{invite.completed}}</td>
+                        <td>{{invite.form_type}}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <p>Opened = {{open}}</p>
+        <p>Completed = {{completed}}</p>
+    </body>
+</html>

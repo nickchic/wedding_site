@@ -1,0 +1,20 @@
+{% include "form/greeting.html" %}
+<form action="guest_form_two" method="post">
+    {% csrf_token %}
+    <p>Is {{invite.guest_1.first_name}} coming to the wedding?</p>
+    <select name='attending_one'>
+        <option value="yes">Yes</option>
+        <option value="no">No</option>
+    </select>
+    <p>Bringing a guest?</p>
+    <select name='plus_one'>
+        <option value="yes">Yes</option>
+        <option value="no">No</option>
+    </select>
+    <p>Guest Name?</p>
+    <p>First</p>
+    <input type='text' name='guest_first'/>
+    <p>Last</p>
+    <input type='text' name='guest_last'/>
+    <input type='submit' />
+</form>
