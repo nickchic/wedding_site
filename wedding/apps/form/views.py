@@ -6,67 +6,85 @@ def index(request):
 
 def guest_form_zero(request):
     print(request.POST)
+    invite = Invite.objects.get(id=request.POST['id'])
 
-    attending = False;
-    if request.POST['attending'] == 'yes':
-        attending = True
+    if request.POST['attending_one'] == 'yes':
+         invite.guest_1.attending = True
 
-    staying = False;
-    if request.POST['staying'] == 'yes':
-        staying = True
+    if request.POST['attending_two'] == 'yes':
+         invite.guest_2.attending = True
 
+    invite.completed = True
+    invite.guest_1.save()
+    invite.guest_2.save()
+    invite.save()
     return redirect('/')
 
 def guest_form_one(request):
     print(request.POST)
+    invite = Invite.objects.get(id=request.POST['id'])
 
-    attending = False;
-    if request.POST['attending'] == 'yes':
-        attending = True
+    if request.POST['attending_one'] == 'yes':
+         invite.guest_1.attending = True
 
-    staying = False;
+    if request.POST['attending_two'] == 'yes':
+         invite.guest_2.attending = True
+
     if request.POST['staying'] == 'yes':
-        staying = True
+        invite.guest_1.staying = True
+        invite.guest_2.staying = True
 
+    invite.completed = True
+    invite.guest_1.save()
+    invite.guest_2.save()
+    invite.save()
     return redirect('/')
 
 def guest_form_two(request):
     print(request.POST)
+    invite = Invite.objects.get(id=request.POST['id'])
 
-    attending = False;
-    if request.POST['attending'] == 'yes':
-        attending = True
+    if request.POST['attending_one'] == 'yes':
+         invite.guest_1.attending = True
 
-    staying = False;
+    staying = False
     if request.POST['staying'] == 'yes':
+        invite.guest_1.staying = True
         staying = True
 
+    if request.POST['plus_one'] == 'yes':
+        Guest.objects.create(first_name = request.POST['guest_first'], last_name = request.POST['guest_last'], attending=True, staying=staying);
+
+    invite.completed = True
+    invite.guest_1.save()
+    invite.save()
     return redirect('/')
 
 def guest_form_three(request):
     print(request.POST)
+    invite = Invite.objects.get(id=request.POST['id'])
 
-    attending = False;
-    if request.POST['attending'] == 'yes':
-        attending = True
+    if request.POST['attending_one'] == 'yes':
+         invite.guest_1.attending = True
 
-    staying = False;
-    if request.POST['staying'] == 'yes':
-        staying = True
-
+    invite.completed = True
+    invite.guest_1.save()
+    invite.save()
     return redirect('/')
 
 def guest_form_four(request):
     print(request.POST)
+    invite = Invite.objects.get(id=request.POST['id'])
 
-    attending = False;
-    if request.POST['attending'] == 'yes':
-        attending = True
+    if request.POST['attending_one'] == 'yes':
+         invite.guest_1.attending = True
 
-    staying = False;
-    if request.POST['staying'] == 'yes':
-        staying = True
+    if request.POST['plus_one'] == 'yes':
+        Guest.objects.create(first_name = request.POST['guest_first'], last_name = request.POST['guest_last'], attending=True, staying=staying);
 
+    invite.completed = True
+    invite.guest_1.save()
+    invite.save()
     return redirect('/')
 
 def guest_view(request):
@@ -122,6 +140,10 @@ def form(request):
     context = {
         'invite': invite
     }
+
+    if invite.completed:
+        return render(request, 'form/already_complete.html', context)
+
     invite.opened = True;
     invite.save()
     if invite.form_type == 0:
@@ -134,6 +156,31 @@ def form(request):
         return render(request, 'form/form_3.html', context)
     else:
         return render(request, 'form/form_4.html', context)
+
+def edit_guest(request, guest_id):
+    guest = Guest.objects.get(id=guest_id)
+
+    if request.POST['attending'] == 'yes':
+        guest.attending = True
+    else:
+        guest.attending = False
+
+    if request.POST['staying'] == 'yes':
+        guest.staying = True
+    else:
+        guest.staying = False
+
+    guest.save()
+
+
+    return redirect('/')
+
+def edit_guest_page(request, guest_id):
+    guest = Guest.objects.get(id=guest_id)
+    context = {
+        'guest':guest
+    }
+    return render(request, 'form/edit_guest.html', context)
 
 def fill_invites():
     # form id

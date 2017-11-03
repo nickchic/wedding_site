@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <p>{{guest.id}}</p>
+        <p>{{guest.first_name}} {{guest.last_name}}</p>
+        <p>Attending = {{guest.attending}}</p>
+        <p>Staying = {{guest.staying}}</p>
+        <form action="/edit_action/guest/{{guest.id}}" method="post">
+            {% csrf_token %}
+            <p>Is {{guest.first_name}} coming to the wedding?</p>
+            <select name='attending'>
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+            </select>
+            <p>Staying at the house?</p>
+            <select name='staying'>
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+            </select>
+            <input type='submit' />
+        </form>
+    </body>
+</html>
