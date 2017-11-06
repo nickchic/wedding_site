@@ -11,10 +11,51 @@
         <option value="yes">Yes</option>
         <option value="no">No</option>
     </select>
-    <p>Staying at the house?</p>
-    <select name='staying'>
+    <p>Is {{invite.guest_1.first_name}} staying at the house?</p>
+    <select name='staying_one'>
         <option value="yes">Yes</option>
         <option value="no">No</option>
+    </select>
+    <p>Is {{invite.guest_2.first_name}} staying at the house?</p>
+    <select name='staying_two'>
+        <option value="yes">Yes</option>
+        <option value="no">No</option>
+    </select>
+    <p>Is {{invite.guest_1.first_name}} attending the rehearsal dinner?</p>
+    <select name='rehearsal_one'>
+        <option value="yes">Yes</option>
+        <option value="no">No</option>
+    </select>
+    <p>Is {{invite.guest_2.first_name}} attending the rehearsal dinner?</p>
+    <select name='rehearsal_two'>
+        <option value="yes">Yes</option>
+        <option value="no">No</option>
+    </select>
+    <p>Is {{invite.guest_1.first_name}} going to play in the color war?</p>
+    <select name='color_one'>
+        <option value="yes">Yes</option>
+        <option value="no">No</option>
+    </select>
+    <p>Is {{invite.guest_2.first_name}} going to play in the color war?</p>
+    <select name='color_two'>
+        <option value="yes">Yes</option>
+        <option value="no">No</option>
+    </select>
+    <p>{{invite.guest_1.first_name}}'s shirt size?</p>
+    <select name='shirt_one'>
+        <option value="S">S</option>
+        <option value="M">M</option>
+        <option value="L">L</option>
+        <option value="XL">XL</option>
+        <option value="XXL">XXL</option>
+    </select>
+    <p>{{invite.guest_2.first_name}}'s shirt size?</p>
+    <select name='shirt_two'>
+        <option value="S">S</option>
+        <option value="M">M</option>
+        <option value="L">L</option>
+        <option value="XL">XL</option>
+        <option value="XXL">XXL</option>
     </select>
     <input type='hidden' name='id' value='{{invite.id}}'/>
     <input type='submit' />

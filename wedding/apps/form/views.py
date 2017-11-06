@@ -15,6 +15,8 @@ def guest_form_zero(request):
          invite.guest_2.attending = True
 
     invite.completed = True
+    invite.guest_1.rsvp = True
+    invite.guest_2.rsvp = True
     invite.guest_1.save()
     invite.guest_2.save()
     invite.save()
@@ -30,11 +32,30 @@ def guest_form_one(request):
     if request.POST['attending_two'] == 'yes':
          invite.guest_2.attending = True
 
-    if request.POST['staying'] == 'yes':
+    if request.POST['staying_one'] == 'yes':
         invite.guest_1.staying = True
+
+    if request.POST['staying_two'] == 'yes':
         invite.guest_2.staying = True
 
+    if request.POST['rehearsal_one'] == 'yes':
+        invite.guest_1.rehearsal = True
+
+    if request.POST['rehearsal_two'] == 'yes':
+        invite.guest_2.rehearsal = True
+
+    if request.POST['color_one'] == 'yes':
+        invite.guest_1.color_war = True
+
+    if request.POST['color_two'] == 'yes':
+        invite.guest_2.color_war = True
+
+    invite.guest_1.shirt_size = request.POST['shirt_one']
+    invite.guest_2.shirt_size = request.POST['shirt_two']
+
     invite.completed = True
+    invite.guest_1.rsvp = True
+    invite.guest_2.rsvp = True
     invite.guest_1.save()
     invite.guest_2.save()
     invite.save()
@@ -50,12 +71,20 @@ def guest_form_two(request):
     staying = False
     if request.POST['staying'] == 'yes':
         invite.guest_1.staying = True
-        staying = True
+
+    if request.POST['rehearsal_one'] == 'yes':
+        invite.guest_1.rehearsal = True
+
+    if request.POST['color_one'] == 'yes':
+        invite.guest_1.color_war = True
 
     if request.POST['plus_one'] == 'yes':
-        Guest.objects.create(first_name = request.POST['guest_first'], last_name = request.POST['guest_last'], attending=True, staying=staying);
+        Guest.objects.create(first_name = request.POST['guest_first'], last_name = request.POST['guest_last'], attending=True, staying=request.POST['staying_two'], rsvp=True, shirt_size = request.POST['shirt_two'], rehearsal=request.POST['rehearsal_two'], color_war=request.POST['color_two']);
+
+    invite.guest_1.shirt_size = request.POST['shirt_one']
 
     invite.completed = True
+    invite.guest_1.rsvp = True
     invite.guest_1.save()
     invite.save()
     return redirect('/')
@@ -68,6 +97,7 @@ def guest_form_three(request):
          invite.guest_1.attending = True
 
     invite.completed = True
+    invite.guest_1.rsvp = True
     invite.guest_1.save()
     invite.save()
     return redirect('/')
@@ -80,9 +110,10 @@ def guest_form_four(request):
          invite.guest_1.attending = True
 
     if request.POST['plus_one'] == 'yes':
-        Guest.objects.create(first_name = request.POST['guest_first'], last_name = request.POST['guest_last'], attending=True, staying=staying);
+        Guest.objects.create(first_name = request.POST['guest_first'], last_name = request.POST['guest_last'], attending=True, staying=request.POST['staying_two'], rsvp=True);
 
     invite.completed = True
+    invite.guest_1.rsvp = True
     invite.guest_1.save()
     invite.save()
     return redirect('/')
@@ -92,14 +123,40 @@ def guest_view(request):
     all_guests = Guest.objects.all()
     attending_total = 0;
     staying_total = 0;
-    no_total = 0;
+    rehearsal_total = 0;
+    color_total = 0;
+    rsvp_total = 0;
+    shirts = {
+        's':0,
+        'm':0,
+        'l':0,
+        'xl':0,
+        'xxl':0,
+    }
     for guest in all_guests:
         if guest.attending:
             attending_total += 1
-        else:
-            no_total += 1;
         if guest.staying:
             staying_total += 1
+        if guest.rehearsal:
+            rehearsal_total += 1
+        if guest.color_war:
+            color_total += 1
+        if guest.rsvp:
+            rsvp_total += 1
+
+        if guest.shirt_size == 'S':
+            shirts['s'] += 1
+        elif guest.shirt_size == 'M':
+            shirts['m'] += 1
+        elif guest.shirt_size == 'L':
+            shirts['l'] += 1
+        elif guest.shirt_size == 'XL':
+            shirts['xl'] += 1
+        elif guest.shirt_size == 'XXL':
+            shirts['xxl'] += 1
+
+
 
     all_invites = Invite.objects.all()
     opened_invites = 0
@@ -114,7 +171,9 @@ def guest_view(request):
         'guests': all_guests,
         'total':attending_total,
         'stay':staying_total,
-        'no':no_total,
+        'rsvp':rsvp_total,
+        'rehearsal':rehearsal_total,
+        'shirts':shirts,
         'invites':all_invites,
         'open':opened_invites,
         'completed':completed_invites,
@@ -160,6 +219,9 @@ def form(request):
 def edit_guest(request, guest_id):
     guest = Guest.objects.get(id=guest_id)
 
+    guest.first_name = request.POST['first_name']
+    guest.last_name = request.POST['last_name']
+    
     if request.POST['attending'] == 'yes':
         guest.attending = True
     else:
@@ -170,10 +232,25 @@ def edit_guest(request, guest_id):
     else:
         guest.staying = False
 
+    if request.POST['rehearsal'] == 'yes':
+        guest.rehearsal = True
+    else:
+        guest.rehearsal = False
+
+    if request.POST['color'] == 'yes':
+        guest.color_war = True
+    else:
+        guest.color_war = False
+
+    if not request.POST['shirt'] == 'null':
+        guest.shirt_size = request.POST['shirt']
+    else:
+        guest.shirt_size = None
+
     guest.save()
 
 
-    return redirect('/')
+    return redirect('/all_guests')
 
 def edit_guest_page(request, guest_id):
     guest = Guest.objects.get(id=guest_id)

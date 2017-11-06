@@ -2,24 +2,82 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title></title>
+        <title>Edit {{guest.first_name}} {{guest.last_name}}</title>
     </head>
     <body>
         <p>{{guest.id}}</p>
         <p>{{guest.first_name}} {{guest.last_name}}</p>
         <p>Attending = {{guest.attending}}</p>
         <p>Staying = {{guest.staying}}</p>
+        <p>Rehearsal = {{guest.rehearsal}}</p>
+        <p>Color = {{guest.color_war}}</p>
+        <p>RSVP = {{guest.rsvp}}</p>
+        <p>Shirt = {{guest.shirt_size}}</p>
         <form action="/edit_action/guest/{{guest.id}}" method="post">
             {% csrf_token %}
+            <p>First Name</p>
+            <input type='text' value='{{guest.first_name}}' name='first_name' />
+            <p>Last Name</p>
+            <input type='text' value='{{guest.last_name}}' name='last_name' />
             <p>Is {{guest.first_name}} coming to the wedding?</p>
             <select name='attending'>
-                <option value="yes">Yes</option>
-                <option value="no">No</option>
+                {% if guest.attending %}
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                {% else %}
+                    <option value="no">No</option>
+                    <option value="yes">Yes</option>
+                {% endif %}
             </select>
             <p>Staying at the house?</p>
             <select name='staying'>
-                <option value="yes">Yes</option>
-                <option value="no">No</option>
+                {% if guest.staying %}
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                {% else %}
+                    <option value="no">No</option>
+                    <option value="yes">Yes</option>
+                {% endif %}
+            </select>
+            <p>Rehearsal dinner?</p>
+            <select name='rehearsal'>
+                {% if guest.rehearsal %}
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                {% else %}
+                    <option value="no">No</option>
+                    <option value="yes">Yes</option>
+                {% endif %}
+            </select>
+            <p>Color War?</p>
+            <select name='color'>
+                {% if guest.color_war %}
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                {% else %}
+                    <option value="no">No</option>
+                    <option value="yes">Yes</option>
+                {% endif %}
+            </select>
+            <p>RSVP'ed?</p>
+            <select name='rsvp'>
+                {% if guest.rsvp %}
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                {% else %}
+                    <option value="no">No</option>
+                    <option value="yes">Yes</option>
+                {% endif %}
+            </select>
+            <p>Shirt size?</p>
+
+            <select name='shirt' selected='selected'>
+                <option value="null" >None</option>
+                <option value="S" {% if guest.shirt_size == 'S' %} selected {% endif %}>S</option>
+                <option value="M" {% if guest.shirt_size == 'M' %} selected {% endif %}>M</option>
+                <option value="L" {% if guest.shirt_size == 'L' %} selected {% endif %}>L</option>
+                <option value="XL" {% if guest.shirt_size == 'XL' %} selected {% endif %}>XL</option>
+                <option value="XXL" {% if guest.shirt_size == 'XXL' %} selected {% endif %}>XXL</option>
             </select>
             <input type='submit' />
         </form>
