@@ -21,6 +21,7 @@
                     <th>RSVP</th>
                     <th>Rehearsal</th>
                     <th>Color War</th>
+                    <th>Camping</th>
                     <th>Shirt Size</th>
                 </tr>
                 {% for guest in guests %}
@@ -33,6 +34,7 @@
                         <td>{{guest.rsvp}}</td>
                         <td>{{guest.rehearsal}}</td>
                         <td>{{guest.color_war}}</td>
+                        <td>{{guest.camping}}</td>
                         <td>{{guest.shirt_size}}</td>
                     </tr>
                 {% endfor %}
@@ -41,6 +43,7 @@
             <p>Staying at House = {{stay}} / 28</p>
             <p>Rehearsal Dinner = {{rehearsal}} / 28</p>
             <p>RSVP = {{rsvp}} / 75</p>
+            <p>Camping = {{camping}} / 47</p>
             <h2>Shirts</h2>
             <p>S = {{shirts.s}}</p>
             <p>M = {{shirts.m}}</p>
@@ -51,6 +54,7 @@
         <div>
             <table>
                 <tr>
+                    <th>ID</th>
                     <th>Guest 1</th>
                     <th>Guest 2</th>
                     <th>Passcode</th>
@@ -60,6 +64,7 @@
                 </tr>
                 {% for invite in invites %}
                     <tr>
+                        <td><a href='edit/invite/{{invite.id}}'>{{invite.id}}</a></td>
                         <td>{{invite.guest_1.first_name}} {{invite.guest_1.last_name}}</td>
                         <td>{{invite.guest_2.first_name}} {{invite.guest_2.last_name}}</td>
                         <td>{{invite.passcode}}</td>

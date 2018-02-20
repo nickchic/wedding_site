@@ -69,6 +69,16 @@
                     <option value="yes">Yes</option>
                 {% endif %}
             </select>
+            <p>Camping?</p>
+            <select name='camping'>
+                {% if guest.camping %}
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                {% else %}
+                    <option value="no">No</option>
+                    <option value="yes">Yes</option>
+                {% endif %}
+            </select>
             <p>Shirt size?</p>
 
             <select name='shirt' selected='selected'>
@@ -79,6 +89,7 @@
                 <option value="XL" {% if guest.shirt_size == 'XL' %} selected {% endif %}>XL</option>
                 <option value="XXL" {% if guest.shirt_size == 'XXL' %} selected {% endif %}>XXL</option>
             </select>
+            <br />
             <input type='submit' />
         </form>
     </body>

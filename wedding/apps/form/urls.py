@@ -13,4 +13,6 @@ urlpatterns = [
     url(r'^form', views.form),
     url(r'^edit/guest/(?P<guest_id>[0-9]+)', views.edit_guest_page),
     url(r'^edit_action/guest/(?P<guest_id>[0-9]+)', views.edit_guest),
+    url(r'^edit/invite/(?P<invite_id>[0-9]+)', views.edit_invite_page),
+    url(r'^edit_action/invite/(?P<invite_id>[0-9]+)', views.edit_invite),
 ]

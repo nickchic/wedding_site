@@ -19,6 +19,7 @@ class Guest(models.Model):
     color_war = models.BooleanField()
     rehearsal = models.BooleanField()
     rsvp = models.BooleanField()
+    camping = models.BooleanField()
     shirt_size = models.CharField(max_length=5, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
