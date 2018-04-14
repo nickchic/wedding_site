@@ -24,7 +24,10 @@ def guest_form_zero(request):
     invite.guest_1.save()
     invite.guest_2.save()
     invite.save()
-    return redirect('/')
+    context = {
+        'invite': invite
+    }
+    return render(request, 'form/thank_you.html', context)
 
 def guest_form_one(request):
     print(request.POST)
@@ -63,7 +66,10 @@ def guest_form_one(request):
     invite.guest_1.save()
     invite.guest_2.save()
     invite.save()
-    return redirect('/')
+    context = {
+        'invite': invite
+    }
+    return render(request, 'form/thank_you.html', context)
 
 def guest_form_two(request):
     print(request.POST)
@@ -91,7 +97,10 @@ def guest_form_two(request):
     invite.guest_1.rsvp = True
     invite.guest_1.save()
     invite.save()
-    return redirect('/')
+    context = {
+        'invite': invite
+    }
+    return render(request, 'form/thank_you.html', context)
 
 def guest_form_three(request):
     print(request.POST)
@@ -107,7 +116,10 @@ def guest_form_three(request):
     invite.guest_1.rsvp = True
     invite.guest_1.save()
     invite.save()
-    return redirect('/')
+    context = {
+        'invite': invite
+    }
+    return render(request, 'form/thank_you.html', context)
 
 def guest_form_four(request):
     print(request.POST)
@@ -128,7 +140,10 @@ def guest_form_four(request):
     invite.guest_1.rsvp = True
     invite.guest_1.save()
     invite.save()
-    return redirect('/')
+    context = {
+        'invite': invite
+    }
+    return render(request, 'form/thank_you.html', context)
 
 def guest_view(request):
 
