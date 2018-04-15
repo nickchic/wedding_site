@@ -177,6 +177,7 @@ li {
 	background-color: #774403;
 	height: 35vmin;
 	position: absolute;
+	top: 16.3vmin;
 }
 
 #RSVPcode_BorderTop {
@@ -194,7 +195,7 @@ li {
 	height: 5px;
 	background-image: url(http://nicksey.com/_images/border_brown.png);
 	background-repeat: repeat-x;
-	top: 35vmin;
+	top: 34.65vmin;
 }
 
 #boxes {
@@ -281,8 +282,10 @@ input[type=submit].rsvpcode:hover {
 .rsvp {
 	border: none;
 	font-family: 'Roboto Mono';
-	font-size: 17.8vmin;
-	letter-spacing: 8.7vmin;
+	/*font-size: 17.8vmin;
+	letter-spacing: 8.7vmin;*/
+	font-size: 6em;
+    letter-spacing: .48em;
 	text-transform: uppercase;
 	background-color: rgba(255,255,255,0);
 	color: #774403;
