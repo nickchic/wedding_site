@@ -1,62 +1,158 @@
+<div id="formBase" class="moveFromRight">
 {% include "form/greeting.html" %}
 <form action="guest_form_one" method="post">
     {% csrf_token %}
-    <p>Is {{invite.guest_1.first_name}} coming to the wedding?</p>
-    <select name='attending_one'>
-        <option value="yes">Yes</option>
+	
+	<div id="formContainer"><div id="form1">
+    <p>Is <span>{{invite.guest_1.first_name}}</span> coming to the wedding?
+    <select class="padLeft" name='attending_one' onchange="rsvpCheck()" required>
+        <option disabled selected value>--</option>
+		<option value="yes" id="rsvp1YesCheck">Yes</option>
+        <option value="no" id="rsvp1NoCheck">No</option>
+    </select></p>
+	
+    <p>Is <span>{{invite.guest_2.first_name}}</span> coming to the wedding?
+    <select class="padLeft" name='attending_two' onchange="rsvpCheck()" required>
+        <option disabled selected value>--</option>
+		<option value="yes" id="rsvp2YesCheck">Yes</option>
+        <option value="no" id="rsvp2NoCheck">No</option>
+    </select></p>
+	
+	<!-- If both no, don't show below this -->
+	
+	<div id="rsvpYesOption1">
+	<div id="space"></div>
+	<p class="cabinTxt">We have reserved the large house, the "Alumni House," for lodging (for the wedding party) at the camp. <br/>You are invited to stay with us!
+	<div id="rsvpG1YesOption1">
+    <p>Is <b>{{invite.guest_1.first_name}}</b> staying at the <b>Alumni House</b>?
+    <select class="padLeft" name='staying_one'>
+        <option disabled selected value>--</option>
+		<option value="yes">Yes</option>
         <option value="no">No</option>
-    </select>
-    <p>Is {{invite.guest_2.first_name}} coming to the wedding?</p>
-    <select name='attending_two'>
-        <option value="yes">Yes</option>
+    </select></p>
+	</div>
+	
+	<div id="rsvpG2YesOption1">
+    <p>Is <b>{{invite.guest_2.first_name}}</b> staying at the <b>Alumni House</b>?
+    <select class="padLeft" name='staying_two'>
+        <option disabled selected value>--</option>
+		<option value="yes">Yes</option>
         <option value="no">No</option>
-    </select>
-    <p>Is {{invite.guest_1.first_name}} staying at the house?</p>
-    <select name='staying_one'>
-        <option value="yes">Yes</option>
+    </select></p>
+	</div>
+	<div id="smspace"></div>
+	<p class="extraTxt">** more information about the Alumni House will be sent at a later date **</p></div>
+	
+	<div id="space"></div>
+	<div id="rsvpG1YesOption2">
+    <p>Is <b>{{invite.guest_1.first_name}}</b> attending the <b>rehearsal dinner</b>?
+    <select class="padLeft" name='rehearsal_one'>
+        <option disabled selected value>--</option>
+		<option value="yes">Yes</option>
         <option value="no">No</option>
-    </select>
-    <p>Is {{invite.guest_2.first_name}} staying at the house?</p>
-    <select name='staying_two'>
-        <option value="yes">Yes</option>
+    </select></p>
+	</div>
+		
+	<div id="rsvpG2YesOption2">
+    <p>Is <b>{{invite.guest_2.first_name}}</b> attending the <b>rehearsal dinner</b>?
+    <select class="padLeft" name='rehearsal_two'>
+        <option disabled selected value>--</option>
+		<option value="yes">Yes</option>
         <option value="no">No</option>
-    </select>
-    <p>Is {{invite.guest_1.first_name}} attending the rehearsal dinner?</p>
-    <select name='rehearsal_one'>
-        <option value="yes">Yes</option>
-        <option value="no">No</option>
-    </select>
-    <p>Is {{invite.guest_2.first_name}} attending the rehearsal dinner?</p>
-    <select name='rehearsal_two'>
-        <option value="yes">Yes</option>
-        <option value="no">No</option>
-    </select>
-    <p>Is {{invite.guest_1.first_name}} going to play in the color war?</p>
-    <select name='color_one'>
-        <option value="yes">Yes</option>
-        <option value="no">No</option>
-    </select>
-    <p>Is {{invite.guest_2.first_name}} going to play in the color war?</p>
-    <select name='color_two'>
-        <option value="yes">Yes</option>
-        <option value="no">No</option>
-    </select>
-    <p>{{invite.guest_1.first_name}}'s shirt size?</p>
-    <select name='shirt_one'>
+    </select></p>
+	</div>	
+	
+	<div id="rsvpYesOption3">
+	<div id="space"></div>
+	<p class="cabinTxt">We are planning on using the camp to our full advantage by hosting a good, ol' fashioned "Color War." The Friday before the wedding (28th), we will have the Bride's Side vs. the Groom's Side in an epic battle of sport, wits, trivia, and physical challenges! This will be held during the day, before the rehearsal dinner. Each team will be competing for points... and whichever team has the most points, wins!</p>
+	<div id="rsvpG1YesOption3">
+    <p>Is <b>{{invite.guest_1.first_name}}</b> participating in the <b>Color War</b>?
+    <select class="padLeft" name='color_one' onchange="yesnoCheckS1()">
+        <option disabled selected value>--</option>
+		<option value="yes" id="yesCheckS1">Yes</option>
+        <option value="no" id="noCheckS1">No</option>
+    </select></p>
+	
+	<div id="yesOptionS1">
+		<p>What is <b>{{invite.guest_1.first_name}}'s shirt size</b>?
+    <select class="padLeft" name='shirt_one'>
         <option value="S">S</option>
         <option value="M">M</option>
         <option value="L">L</option>
         <option value="XL">XL</option>
         <option value="XXL">XXL</option>
-    </select>
-    <p>{{invite.guest_2.first_name}}'s shirt size?</p>
-    <select name='shirt_two'>
+    </select></p>
+	</div></div>
+	
+	<div id="rsvpG2YesOption3">
+    <p>Is <b>{{invite.guest_2.first_name}}</b> participating in the <b>Color War</b>?
+    <select class="padLeft" name='color_two' onchange="yesnoCheckS2()">
+        <option disabled selected value>--</option>
+		<option value="yes" id="yesCheckS2">Yes</option>
+        <option value="no" id="noCheckS2">No</option>
+    </select></p>
+	
+	<div id="yesOptionS2">
+    <p>What is <b>{{invite.guest_2.first_name}}'s shirt size</b>?
+    <select class="padLeft" name='shirt_two'>
         <option value="S">S</option>
         <option value="M">M</option>
         <option value="L">L</option>
         <option value="XL">XL</option>
         <option value="XXL">XXL</option>
-    </select>
+    </select></p>
+	</div></div>
+	<div id="smspace"></div>
+	<p class="extraTxt">** more information about the Color War will be sent at a later date **</p></div></div>
+		
     <input type='hidden' name='id' value='{{invite.id}}'/>
-    <input type='submit' />
+    <div id="submitBtnForm"><input type='submit' class="form" value="RSVP" /></div>
+	
 </form>
+
+<script>
+	function rsvpCheck() {
+        if (document.getElementById("rsvp1YesCheck").selected || document.getElementById("rsvp2YesCheck").selected) {
+            document.getElementById("rsvpYesOption1").style.display = "block";
+			document.getElementById("rsvpYesOption3").style.display = "block";
+        } else {
+            document.getElementById("rsvpYesOption1").style.display = "none";
+			document.getElementById("rsvpYesOption3").style.display = "none";
+        }
+		if (document.getElementById("rsvp1YesCheck").selected) {
+            document.getElementById("rsvpG1YesOption1").style.display = "block";
+			document.getElementById("rsvpG1YesOption2").style.display = "block";
+			document.getElementById("rsvpG1YesOption3").style.display = "block";
+        } else {
+            document.getElementById("rsvpG1YesOption1").style.display = "none";
+			document.getElementById("rsvpG1YesOption2").style.display = "none";
+			document.getElementById("rsvpG1YesOption3").style.display = "none";
+        }
+		if (document.getElementById("rsvp2YesCheck").selected) {
+            document.getElementById("rsvpG2YesOption1").style.display = "block";
+			document.getElementById("rsvpG2YesOption2").style.display = "block";
+			document.getElementById("rsvpG2YesOption3").style.display = "block";
+        } else {
+            document.getElementById("rsvpG2YesOption1").style.display = "none";
+			document.getElementById("rsvpG2YesOption2").style.display = "none";
+			document.getElementById("rsvpG2YesOption3").style.display = "none";
+        }
+    }
+	
+    function yesnoCheckS1() {
+        if (document.getElementById("yesCheckS1").selected) {
+            document.getElementById("yesOptionS1").style.display = "block";
+        } else {
+            document.getElementById("yesOptionS1").style.display = "none";
+        }
+    }
+	
+	function yesnoCheckS2() {
+        if (document.getElementById("yesCheckS2").selected) {
+            document.getElementById("yesOptionS2").style.display = "block";
+        } else {
+            document.getElementById("yesOptionS2").style.display = "none";
+        }
+    }
+</script>
+</div>

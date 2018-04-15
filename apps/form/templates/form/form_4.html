@@ -1,26 +1,80 @@
+<div id="formBase" class="moveFromRight">
 {% include "form/greeting.html" %}
 <form action="guest_form_four" method="post">
     {% csrf_token %}
-    <p>Is {{invite.guest_1.first_name}} coming to the wedding?</p>
-    <select name='attending_one'>
-        <option value="yes">Yes</option>
-        <option value="no">No</option>
-    </select>
-    <p>Bringing a guest?</p>
-    <select name='plus_one'>
-        <option value="yes">Yes</option>
-        <option value="no">No</option>
-    </select>
-    <p>Guest Name?</p>
-    <p>First</p>
-    <input type='text' name='guest_first'/>
-    <p>Last</p>
-    <input type='text' name='guest_last'/>
-    <p>Interested in staying in a cabin on the property?</p>
-    <select name='camping'>
-        <option value="yes">Yes</option>
-        <option value="no">No</option>
-    </select>
+	
+	<div id="formContainer"><div id="form4">
+    <p><span>{{invite.guest_1.first_name}},</span> are you coming to the wedding?
+    <select class="padLeft" name='attending_one' onchange="rsvpCheck()" required>
+        <option disabled selected value>--</option>
+		<option value="yes" id="rsvp1YesCheck">Yes</option>
+        <option value="no" id="rsvp1NoCheck">No</option>
+    </select></p>
+	
+	<!-- if 'attending_one' = yes, show -->
+	<!-- if 'attending_one' = no, don't show anything below -->
+	
+	<div id="rsvpYesOption">
+    <p>Are you bringing <span>a guest</span>?
+    <select class="padLeft" name='plus_one' onchange="yesnoCheckG()">
+		<option disabled selected value>--</option>
+		<option value="yes" id="yesCheckG">Yes</option>
+		<option value="no" id="noCheckG">No</option>
+    </select></p>
+	
+	<!-- if 'plus_one' = yes, show -->
+	
+	<div id="yesOptionG">
+    <p>What is <b>your guest's name</b>?</p>
+    <input type='text' class="fname" autocomplete="off" placeholder="First Name" name='guest_first'/>
+    <input type='text' class="lname" autocomplete="off" placeholder="Last Name" name='guest_last'/>
+	</div>
+		
+	<div id="space"></div>	
+    <p>Are you interested in staying in a cabin on the property?
+    <select class="padLeft" name='camping' onchange="yesnoCheck()">
+		<option disabled selected value>--</option>
+		<option value="yes" id="yesCheck">Yes</option>
+		<option value="no" id="noCheck">No</option>
+    </select></p>
+	
+	<div id="yesOption">
+    	<p class="cabinTxt">These are traditional summer camp cabins; they are true to the word "rustic." They are a basic shelter, so do not expect the Four Seasons. You would only be able to stay that Saturday night to Sunday morning. Brunch will be available! Cabins are limited and first come, first served.</p>
+		<p>Do you want to reserve a cabin on the property?</p>
+    	<select name='reserveCamping'>
+			<option value="no">No</option>
+        	<option value="yes">Yes</option>
+			<option value="sendInfo">Send me more info</option>
+    	</select>
+	</div></div></div>
+	
     <input type='hidden' name='id' value='{{invite.id}}'/>
-    <input type='submit' />
+    <div id="submitBtnForm"><input type='submit' class="form" value="RSVP" /></div>
+	
 </form>
+
+<script>
+    function rsvpCheck() {
+        if (document.getElementById("rsvp1YesCheck").selected) {
+            document.getElementById("rsvpYesOption").style.display = "block";
+        } else {
+            document.getElementById("rsvpYesOption").style.display = "none";
+        }
+    }
+	
+	function yesnoCheck() {
+        if (document.getElementById("yesCheck").selected) {
+            document.getElementById("yesOption").style.display = "block";
+        } else {
+            document.getElementById("yesOption").style.display = "none";
+        }
+    }
+	function yesnoCheckG() {
+        if (document.getElementById("yesCheckG").selected) {
+            document.getElementById("yesOptionG").style.display = "block";
+        } else {
+            document.getElementById("yesOptionG").style.display = "none";
+        }
+    }
+</script>
+</div>
