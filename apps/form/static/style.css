@@ -191,11 +191,11 @@ li {
 
 #RSVPcode_BorderBottom {
 	width: 100%;
-	position: relative;
+	position: absolute;
 	height: 5px;
 	background-image: url(http://nicksey.com/_images/border_brown.png);
 	background-repeat: repeat-x;
-	top: 34.45vmin;
+	top: 50.9vmin;
 }
 
 #boxes {
@@ -689,5 +689,19 @@ input[type="text"].fname::-webkit-input-placeholder, input[type="text"].lname::-
     	letter-spacing: 56px;
     	text-indent: 20px;
 	}
+	
+	.title1 {
+		font-size: 31px;
+		padding-bottom: 4px;
+	}
+
+	.title2 {
+		font-size: 16px;
+		padding-bottom: 70px;
+	}
+	
+	#submitBtn {
+		padding-top: 220px;
+	}	
 }
 
