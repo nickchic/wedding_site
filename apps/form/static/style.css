@@ -666,14 +666,24 @@ input[type="text"].fname::-webkit-input-placeholder, input[type="text"].lname::-
 /* @media */
 
 @media only screen and (min-height: 682px) and (min-width: 720px) { 
+	#RSVPcode {
+		height: 251px;
+		top: 117px;
+	}
+
+	#RSVPcode_BorderTop {
+		top: 113px;
+	}
+
+	#RSVPcode_BorderBottom {
+		position: absolute;
+		top: 367px;
+	}
+	
 	#marginsAuto {
 		width: 540px;
 	}
 
-	#codeInput {
-    	transform: translateY(36.5%);
-	}
-	
 	.rsvp {
 		font-size: 136px;
     	letter-spacing: 56px;
