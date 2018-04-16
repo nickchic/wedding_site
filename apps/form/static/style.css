@@ -195,7 +195,7 @@ li {
 	height: 5px;
 	background-image: url(http://nicksey.com/_images/border_brown.png);
 	background-repeat: repeat-x;
-	top: 34.65vmin;
+	top: 34.45vmin;
 }
 
 #boxes {
@@ -239,6 +239,8 @@ li {
 	position: relative;
 	top: 50%;
     transform: translateY(24.5%);
+	max-height: 160px;
+	max-width: 515px;
 }
 
 #submitBtn {
@@ -282,14 +284,13 @@ input[type=submit].rsvpcode:hover {
 .rsvp {
 	border: none;
 	font-family: 'Roboto Mono';
-	/*font-size: 17.8vmin;
-	letter-spacing: 8.7vmin;*/
 	font-size: 6em;
     letter-spacing: .48em;
 	text-transform: uppercase;
 	background-color: rgba(255,255,255,0);
 	color: #774403;
 	text-indent: .18em;
+	max-height: 160px;
 }
 
 .title1 {
@@ -348,7 +349,7 @@ input[type=submit].rsvpcode:hover {
 	color: #EAF1F6;
 }
 
-/* Form basic */
+/* Form Basic */
 #greeting {
 	width: 100%;
 	padding-bottom: .25em;
@@ -484,7 +485,7 @@ input[type="text"].fname::-webkit-input-placeholder, input[type="text"].lname::-
 }
 
 
-/* Thank You Page */
+/* After Submit */
 #tyGreeting {
 	width: 100%;
 	text-align: center;
@@ -661,4 +662,14 @@ input[type="text"].fname::-webkit-input-placeholder, input[type="text"].lname::-
 	from { -webkit-transform: translateX(100%); transform: translateX(100%); }
 }
 
+
+/* @media */
+
+@media only screen and (min-height: 682px) and (min-width: 720px) { 
+	.rsvp {
+		font-size: 136px;
+    	letter-spacing: 56px;
+    	text-indent: 20px;
+	}
+}
 
