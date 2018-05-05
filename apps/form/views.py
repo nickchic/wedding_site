@@ -18,6 +18,9 @@ def guest_form_zero(request):
         invite.guest_1.camping = True
         invite.guest_2.camping = True
 
+    invite.guest_1.reserve_camping = request.POST['reserveCamping'];
+    invite.guest_2.reserve_camping = request.POST['reserveCamping'];
+
     invite.completed = True
     invite.guest_1.rsvp = True
     invite.guest_2.rsvp = True
@@ -112,6 +115,8 @@ def guest_form_three(request):
     if request.POST['camping'] == 'yes':
         invite.guest_1.camping = True
 
+    invite.guest_1.reserve_camping = request.POST['reserveCamping'];
+
     invite.completed = True
     invite.guest_1.rsvp = True
     invite.guest_1.save()
@@ -131,8 +136,10 @@ def guest_form_four(request):
     if request.POST['camping'] == 'yes':
         invite.guest_1.camping = True
 
+    invite.guest_1.reserve_camping = request.POST['reserveCamping'];
+
     if request.POST['plus_one'] == 'yes':
-        Guest.objects.create(first_name = request.POST['guest_first'], last_name = request.POST['guest_last'], attending=True, staying=False, rsvp=True, color_war=False, camping=invite.guest_1.camping, rehearsal=False);
+        Guest.objects.create(first_name = request.POST['guest_first'], last_name = request.POST['guest_last'], attending=True, staying=False, rsvp=True, color_war=False, camping=invite.guest_1.camping, reserve_camping=invite.guest_1.reserve_camping, rehearsal=False);
 
 
 
@@ -289,6 +296,8 @@ def edit_guest(request, guest_id):
         guest.camping = True
     else:
         guest.camping = False
+
+    guest.reserve_camping = request.POST['reserveCamping']
 
     guest.save()
 

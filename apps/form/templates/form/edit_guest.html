@@ -79,8 +79,9 @@
                     <option value="yes">Yes</option>
                 {% endif %}
             </select>
+            <p>Reserve Camping?</p>
+            <input type='text' value='{{guest.reserve_camping}}' name='reserveCamping' />
             <p>Shirt size?</p>
-
             <select name='shirt' selected='selected'>
                 <option value="null" >None</option>
                 <option value="S" {% if guest.shirt_size == 'S' %} selected {% endif %}>S</option>

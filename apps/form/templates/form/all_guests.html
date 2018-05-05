@@ -22,6 +22,7 @@
                     <th>Rehearsal</th>
                     <th>Color War</th>
                     <th>Camping</th>
+                    <th>Reserve Camping</th>
                     <th>Shirt Size</th>
                 </tr>
                 {% for guest in guests %}
@@ -35,14 +36,15 @@
                         <td>{{guest.rehearsal}}</td>
                         <td>{{guest.color_war}}</td>
                         <td>{{guest.camping}}</td>
+                        <td>{{guest.reserve_camping}}</td>
                         <td>{{guest.shirt_size}}</td>
                     </tr>
                 {% endfor %}
             </table>
-            <p>Total Guests = {{total}} / 75</p>
+            <p>Total Guests = {{total}} / 77</p>
             <p>Staying at House = {{stay}} / 28</p>
             <p>Rehearsal Dinner = {{rehearsal}} / 28</p>
-            <p>RSVP = {{rsvp}} / 75</p>
+            <p>RSVP = {{rsvp}} / 77</p>
             <p>Camping = {{camping}} / 47</p>
             <h2>Shirts</h2>
             <p>S = {{shirts.s}}</p>

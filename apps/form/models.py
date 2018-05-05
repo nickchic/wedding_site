@@ -20,6 +20,7 @@ class Guest(models.Model):
     rehearsal = models.BooleanField()
     rsvp = models.BooleanField()
     camping = models.BooleanField()
+    reserve_camping = models.CharField(max_length=255, null=True)
     shirt_size = models.CharField(max_length=5, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
