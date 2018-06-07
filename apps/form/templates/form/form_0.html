@@ -10,43 +10,42 @@
 		<option value="yes" id="rsvp1YesCheck">Yes</option>
         <option value="no" id="rsvp1NoCheck">No</option>
     </select></p>
-	
+
     <p>Is <span>{{invite.guest_2.first_name}}</span> coming to the wedding?
     <select class="padLeft" name='attending_two' onchange="rsvpCheck()" required>
         <option disabled selected value>--</option>
 		<option value="yes" id="rsvp2YesCheck">Yes</option>
         <option value="no" id="rsvp2NoCheck">No</option>
     </select></p>
-	
+
 		<p><small>** Please note this is an adults only celebration **</small></p>
-		
-		
+
+
 	<!-- If both no, don't show this option -->
-	
+
 	<div id="rsvpYesOption">
     <p>Are you interested in staying in a cabin on the property?
     <select class="padLeft" name='camping' onchange="yesnoCheck()">
-        <option disabled selected value>--</option>
+        <option selected value="no" id="noCheck">No</option>
 		<option value="yes" id="yesCheck">Yes</option>
-		<option value="no" id="noCheck">No</option>
     </select></p>
-	
+
 	<div id="yesOption">
     	<p class="cabinTxt">These are traditional summer camp cabins; they are true to the word "rustic." They are a basic shelter, so do not expect the Four Seasons. You would only be able to stay that Saturday night to Sunday morning. Brunch will be available! Cabins are limited and first come, first served.</p>
 		<p>Do you want to reserve a cabin on the property?
     	<select class="padLeft" name='reserveCamping'>
-			<option value="no">No</option>
+			<option selected value="no">No</option>
 			<option value="yes">Yes</option>
 			<option value="sendInfo">Send me more info</option>
     	</select></p>
 	</div></div></div></div>
-	
+
     <input type='hidden' name='id' value='{{invite.id}}'/>
-    
+
 	<div id="submitBtnForm"><input type='submit' class="form" value="RSVP" /></div>
-	
+
 </form>
-	
+
 <script>
     function rsvpCheck() {
         if (document.getElementById("rsvp1YesCheck").selected || document.getElementById("rsvp2YesCheck").selected) {
@@ -55,7 +54,7 @@
             document.getElementById("rsvpYesOption").style.display = "none";
         }
     }
-	
+
 	function yesnoCheck() {
         if (document.getElementById("yesCheck").selected) {
             document.getElementById("yesOption").style.display = "block";

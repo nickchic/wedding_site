@@ -2,7 +2,7 @@
 {% include "form/greeting.html" %}
 <form action="guest_form_two" method="post">
     {% csrf_token %}
-	
+
 	<div id="formContainer"><div id="form2">
     <p><span>{{invite.guest_1.first_name}},</span> are you coming to the wedding?
     <select class="padLeft" name='attending_one' onchange="rsvpCheck()" required>
@@ -10,84 +10,78 @@
 		<option value="yes" id="rsvp1YesCheck">Yes</option>
         <option value="no" id="rsvp1NoCheck">No</option>
     </select></p>
-	
+
 	<!-- if 'attending_one' = yes, show -->
 	<!-- if 'attending_one' = no, don't show anything below -->
-	
+
 	<div id="rsvpYesOption1">
     <p>Are you bringing <span>a guest</span>?
     <select class="padLeft" name='plus_one' onchange="yesnoCheckG()">
-		<option disabled selected value>--</option>
+		<option selected value="no" id="noCheckG">No</option>
 		<option value="yes" id="yesCheckG">Yes</option>
-		<option value="no" id="noCheckG">No</option>
     </select></p>
-	
+
 	<!-- if 'plus_one' = yes, show -->
-	
+
 	<div id="yesOptionG">
     <p>What is <b>your guest's name</b>?</p>
     <input class="fname" autocomplete="off" type='text' placeholder="First Name" name='guest_first'/>
     <input class="lname" autocomplete="off" type='text' placeholder="Last Name" name='guest_last'/>
-		
+
 		<p><small>** Please note this is an adults only celebration **</small></p>
-		
+
 	</div></div>
-	
+
 	<div id="rsvpYesOption2">
 	<div id="space"></div>
 	<p class="cabinTxt">We have reserved the large house, the "Alumni House," for lodging (for the wedding party) at the camp. <br/>You are invited to stay with us!</p>
 	<div id="smspace"></div>
     <p><b>{{invite.guest_1.first_name}},</b> are you staying at the <b>Alumni House</b>?
     <select class="padLeft" name='staying_one'>
-		<option disabled selected value>--</option>
-        <option value="yes">Yes</option>
-        <option value="no">No</option>
+        <option selected value="no">No</option>
+		<option value="yes">Yes</option>
     </select></p>
-	
+
 	<!-- if 'plus_one' = yes, show -->
-	
+
 	<div id="yesOptionG1">
     <p>Is <b>your guest</b> staying at the <b>Alumni House</b>?
     <select class="padLeft" name='staying_two'>
-		<option disabled selected value>--</option>
-        <option value="yes">Yes</option>
-        <option value="no">No</option>
+        <option selected value="no">No</option>
+		<option value="yes">Yes</option>
     </select></p>
 	</div>
-	
+
 	<p class="extraTxt">** more information about the Alumni House will be sent at a later date **</p></div>
-	
+
 	<div id="space"></div>
 	<div id="rsvpYesOption3">
 	<p>Are <b>you</b> attending the <b>rehearsal dinner</b>?
     <select class="padLeft" name='rehearsal_one'>
-		<option disabled selected value>--</option>
+		<option selected value="no">No</option>>
         <option value="yes">Yes</option>
-        <option value="no">No</option>
     </select></p>
-	
+
 	<!-- if 'plus_one' = yes, show -->
-	
+
 	<div id="yesOptionG2">
     <p>Is <b>your guest</b> attending the <b>rehearsal dinner</b>?
     <select class="padLeft" name='rehearsal_two'>
-		<option disabled selected value>--</option>
-        <option value="yes">Yes</option>
-        <option value="no">No</option>
+        <option selected value="no">No</option>
+		<option value="yes">Yes</option>
     </select></p>
 	</div></div>
-	
+
 	<div id="rsvpYesOption4">
 	<div id="space"></div>
     <p class="cabinTxt">We are planning on using the camp to our full advantage by hosting a good, ol' fashioned "Color War." The Friday before the wedding (28th), we will have the Bride's Side vs. the Groom's Side in an epic battle of sport, wits, trivia, and physical challenges! This will be held during the day, before the rehearsal dinner. Each team will be competing for points... and whichever team has the most points, wins!</p>
 	<div id="smspace"></div>
    	<p>Are <b>you</b> participating in the <b>Color War</b>?
     <select class="padLeft" name='color_one' onchange="yesnoCheckS1()">
-        <option disabled selected value>--</option>
+        <option selected value="no" id="noCheckS1">No</option>
 		<option value="yes" id="yesCheckS1">Yes</option>
-        <option value="no" id="noCheckS1">No</option>
     </select></p>
-	
+
 	<div id="yesOptionS1">
 	<p>What is <b>your shirt size</b>?
     <select class="padLeft" name='shirt_one'>
@@ -98,17 +92,16 @@
         <option value="XXL">XXL</option>
     </select></p>
 	</div>
-	
+
 	<!-- if 'plus_one' = yes, show -->
-	
+
 	<div id="yesOptionG3">
     <p>Is <b>your guest</b> participating in the <b>Color War</b>?
     <select class="padLeft" name='color_two' onchange="yesnoCheckS2()">
-        <option disabled selected value>--</option>
+        <option selected value="no" id="noCheckS2">No</option>
 		<option value="yes" id="yesCheckS2">Yes</option>
-        <option value="no" id="noCheckS2">No</option>
     </select></p>
-	
+
 	<div id="yesOptionS2">
     <p>What is <b>your guest's shirt size</b>?
     <select class="padLeft" name='shirt_two'>
@@ -119,12 +112,12 @@
         <option value="XXL">XXL</option>
     </select></p>
 	</div></div>
-		
+
 	<p class="extraTxt">** more information about the Color War will be sent at a later date **</p></div></div>
-	
+
     <input type='hidden' name='id' value='{{invite.id}}'/>
     <div id="submitBtnForm"><input type='submit' class="form" value="RSVP" /></div>
-	
+
 </form>
 
 <script>
@@ -141,7 +134,7 @@
 			document.getElementById("rsvpYesOption4").style.display = "none";
         }
     }
-	
+
 	function yesnoCheckG() {
         if (document.getElementById("yesCheckG").selected) {
             document.getElementById("yesOptionG").style.display = "block";
@@ -155,7 +148,7 @@
 			document.getElementById("yesOptionG3").style.display = "none";
         }
     }
-	
+
     function yesnoCheckS1() {
         if (document.getElementById("yesCheckS1").selected) {
             document.getElementById("yesOptionS1").style.display = "block";
@@ -170,6 +163,6 @@
             document.getElementById("yesOptionS2").style.display = "none";
         }
     }
-	
+
 </script>
-</div>	
+</div>
