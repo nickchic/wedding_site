@@ -28,16 +28,16 @@
 	<div id="rsvpG1YesOption1">
     <p>Is <b>{{invite.guest_1.first_name}}</b> staying at the <b>Alumni House</b>?
     <select class="padLeft" name='staying_one'>
-        <option selected value="no">No</option>
-		<option value="yes">Yes</option>
+        <option selected value="yes">Yes</option>
+        <option value="no">No</option>
     </select></p>
 	</div>
 
 	<div id="rsvpG2YesOption1">
     <p>Is <b>{{invite.guest_2.first_name}}</b> staying at the <b>Alumni House</b>?
     <select class="padLeft" name='staying_two'>
-        <option selected value="no">No</option>
-		<option value="yes">Yes</option>
+        <option selected value="yes">Yes</option>
+        <option value="no">No</option>
     </select></p>
 	</div>
 	<div id="smspace"></div>
@@ -47,16 +47,16 @@
 	<div id="rsvpG1YesOption2">
     <p>Is <b>{{invite.guest_1.first_name}}</b> attending the <b>rehearsal dinner</b>?
     <select class="padLeft" name='rehearsal_one'>
+        <option selected value="yes">Yes</option>
         <option value="no">No</option>
-		<option value="yes">Yes</option>
     </select></p>
 	</div>
 
 	<div id="rsvpG2YesOption2">
     <p>Is <b>{{invite.guest_2.first_name}}</b> attending the <b>rehearsal dinner</b>?
     <select class="padLeft" name='rehearsal_two'>
-        <option selected value="no">No</option>
-		<option value="yes">Yes</option>
+        <option selected value="yes">Yes</option>
+        <option value="no">No</option>
     </select></p>
 	</div>
 
@@ -99,7 +99,8 @@
     </select></p>
 	</div></div>
 	<div id="smspace"></div>
-	<p class="extraTxt">** more information about the Color War will be sent at a later date **</p></div></div>
+	<p class="extraTxt">** more information about the Color War will be sent at a later date **</p>
+	</div></div></div>
 
     <input type='hidden' name='id' value='{{invite.id}}'/>
     <div id="submitBtnForm"><input type='submit' class="form" value="RSVP" /></div>
