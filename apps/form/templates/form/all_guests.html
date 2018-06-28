@@ -7,6 +7,26 @@
         table tbody tr:nth-child(odd) {
             background-color: #e6e7e8;
         }
+        .green:nth-child(even) {
+            background-color: #B9E8B3;
+        }
+        .green:nth-child(odd) {
+            background-color: #88C87A;
+        }
+
+        .yellow:nth-child(even) {
+            background-color: #FFF1A4;
+        }
+        .yellow:nth-child(odd) {
+            background-color: #EEDB83;
+        }
+
+        .red:nth-child(even) {
+            background-color: #DF8E95;
+        }
+        .red:nth-child(odd) {
+            background-color: #D36E73;
+        }
         </style>
     </head>
     <body>
@@ -26,7 +46,7 @@
                     <th>Shirt Size</th>
                 </tr>
                 {% for guest in guests %}
-                    <tr>
+                    <tr {% if guest.rsvp %} class="{% if guest.attending %}green{% else %}red{% endif %}" {% endif %}>
                         <td><a href='edit/guest/{{guest.id}}'>{{guest.id}}</a></td>
                         <td>{{guest.first_name}}</td>
                         <td>{{guest.last_name}}</td>
@@ -65,7 +85,7 @@
                     <th>Form</th>
                 </tr>
                 {% for invite in invites %}
-                    <tr>
+                    <tr {% if invite.opened %} class="{% if invite.completed %}green{% else %}yellow{% endif %}" {% endif %}>
                         <td><a href='edit/invite/{{invite.id}}'>{{invite.id}}</a></td>
                         <td>{{invite.guest_1.first_name}} {{invite.guest_1.last_name}}</td>
                         <td>{{invite.guest_2.first_name}} {{invite.guest_2.last_name}}</td>
