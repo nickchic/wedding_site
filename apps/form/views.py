@@ -81,8 +81,7 @@ def guest_form_two(request):
     if request.POST['attending_one'] == 'yes':
          invite.guest_1.attending = True
 
-    staying = False
-    if request.POST['staying'] == 'yes':
+    if request.POST['staying_one'] == 'yes':
         invite.guest_1.staying = True
 
     if request.POST['rehearsal_one'] == 'yes':
@@ -92,7 +91,17 @@ def guest_form_two(request):
         invite.guest_1.color_war = True
 
     if request.POST['plus_one'] == 'yes':
-        Guest.objects.create(first_name = request.POST['guest_first'], last_name = request.POST['guest_last'], attending=True, staying=request.POST['staying_two'], rsvp=True, shirt_size = request.POST['shirt_two'], rehearsal=request.POST['rehearsal_two'], color_war=request.POST['color_two']);
+        stay_two = False
+        color_war_two = False
+        rehearsal_two = False
+        if request.POST['staying_two'] == 'yes':
+            staying_two = True
+        if request.POST['color_one'] == 'yes':
+            color_war_two = True
+        if request.POST['rehearsal_two'] == 'yes':
+            rehearsal_two = True
+
+        Guest.objects.create(first_name = request.POST['guest_first'], last_name = request.POST['guest_last'], attending=True, staying=stay_two, rsvp=True, shirt_size = request.POST['shirt_two'], rehearsal=rehearsal_two, color_war=color_war_two, camping=False);
 
     invite.guest_1.shirt_size = request.POST['shirt_one']
 
@@ -140,8 +149,6 @@ def guest_form_four(request):
 
     if request.POST['plus_one'] == 'yes':
         Guest.objects.create(first_name = request.POST['guest_first'], last_name = request.POST['guest_last'], attending=True, staying=False, rsvp=True, color_war=False, camping=invite.guest_1.camping, reserve_camping=invite.guest_1.reserve_camping, rehearsal=False);
-
-
 
     invite.completed = True
     invite.guest_1.rsvp = True
